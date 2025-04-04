@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  flutter_dotenv: ^5.0.2
+
 
   # Icônes Cupertino pour iOS
   cupertino_icons: ^1.0.8
@@ -31,3 +34,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+

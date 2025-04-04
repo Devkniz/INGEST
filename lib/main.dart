@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'services/trello_service.dart';
+import 'package:untitled/services/trello_service.dart';
 import 'models/board.dart';
 import 'package:untitled/models/trello_app.dart';
 
@@ -15,10 +15,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final TrelloService _trelloService = TrelloService();
-  List<Board> _boards = [];
+  List<dynamic> _boards = [];
   bool _isLoading = true;
   
-  get trello_api => null;
+  //*get trello_api => null;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   /// Récupération des espaces de travail
   Future<void> _fetchWorkspaces() async {
     try {
-      final List<dynamic>? workspaces = await trello_api.getAllWorkspace();
+      final List<dynamic>? workspaces = await TrelloService.getAllWorkspace();
       print("Workspaces récupérés: $workspaces");
     } catch (e) {
       print("Erreur lors de la récupération des workspaces: $e");
@@ -40,7 +40,8 @@ class _MyAppState extends State<MyApp> {
   /// Récupération des boards
   Future<void> _fetchBoards() async {
     try {
-      List<Board> boards = await _trelloService.fetchBoards();
+      List<dynamic> boards = await _trelloService.getAllBoards();
+      print("Boards récupérés: $boards");
       setState(() {
         _boards = boards;
         _isLoading = false;
