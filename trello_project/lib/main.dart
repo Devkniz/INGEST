@@ -16,15 +16,7 @@ try {
  runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomePage(),
-    );
-  }
-}
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +29,7 @@ class MyApp extends StatelessWidget {
       home: const HomePage(), // Point d’entrée, page ‘Home’
     );
   }
-
+}
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -65,6 +57,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
 
