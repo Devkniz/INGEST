@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled/screens/boards_page.dart';
 import '../providers/trello_provider.dart';
-import 'board_screen.dart';
+import 'boards_page.dart';
 
 
 
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BoardScreen(boardId: board.id),
+                  builder: (context) => BoardsPage(workspaceId: board.id),
                 ),
               );
             },
