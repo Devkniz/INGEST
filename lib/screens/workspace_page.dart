@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/trello_service.dart';
-import '../models/workspace.dart';
 import 'boards_page.dart';
 
 class WorkspacePage extends StatefulWidget {
