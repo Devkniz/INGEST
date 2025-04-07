@@ -2,22 +2,26 @@ class TrelloCard {
   final String id;
   final String name;
   final String desc;
-  List<Member> _Members = [];
+  final List<Member> members;
 
-  TrelloCard ({required this.id, required this.name,required this.desc, });
-
-  List <Member> get members => _Members;
+  TrelloCard({
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.members,
+  });
 
   factory TrelloCard.fromJson(Map<String, dynamic> json) {
+    var membersList = json['members'] as List? ?? [];
+    List<Member> members = membersList.map((m) => Member.fromJson(m)).toList();
 
     return TrelloCard(
-
-        id: json['id'],
-        name: json ['name'],
-        desc: json ['desc'] ?? '',
+      id: json['id'],
+      name: json['name'],
+      desc: json['desc'] ?? '',
+      members: members,
     );
   }
-
 }
 
 class Member {

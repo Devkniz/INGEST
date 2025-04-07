@@ -4,7 +4,7 @@ import '../services/trello_service.dart';
 class AddCardScreen extends StatefulWidget {
   final String listId;
 
-  AddCardScreen({required this.listId});
+  const AddCardScreen({super.key, required this.listId});
 
   @override
   _AddCardScreenState createState() => _AddCardScreenState();
@@ -19,12 +19,12 @@ class _AddCardScreenState extends State<AddCardScreen> {
     if (_nameController.text.isEmpty) return;
 
     try {
-      await _trelloService.addCard(
+      final newCard = await _trelloService.createCard(
         widget.listId,
         _nameController.text,
         _descController.text,
       );
-      Navigator.pop(context, true); // Retour avec succès
+      Navigator.pop(context, newCard); // Retournez la carte créée
     } catch (e) {
       print("Erreur: $e");
       ScaffoldMessenger.of(context).showSnackBar(
