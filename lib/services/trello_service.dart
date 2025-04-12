@@ -12,15 +12,15 @@ class TrelloService {
   static const String token =
       'ATTA2ee944c2cecab0594e304f0edb8540551727a9ec17f4a98e46617f0bdcbd5bfeD28540EC';
 
-  static Future<List<Workspace>> getAllWorkspace() async {
+  Future<List<Workspace>> getAllWorkspace() async {
     final url = '$_baseUrl/members/me/organizations?key=$api_key&token=$token';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body) as List;
-      return jsonData.map((data) => Workspace.fromJson(data)).toList();
+      final data = json.decode(response.body);
+      return (data as List).map((json) => Workspace.fromJson(json)).toList();
     } else {
-      throw Exception('Erreur lors du chargement des workspaces : ${response.statusCode}');
+      throw Exception("Erreur lors du chargement des workspaces");
     }
   }
 
@@ -252,7 +252,7 @@ class TrelloService {
     if (response.statusCode == 200) {
       print("Liste archivée avec succès");
     } else {
-      print("Erreur lors de l'archivage de la liste: ${response.statusCode} - ${response.body}");
+      print("Erreur lors de l'archivage de la liste : ${response.statusCode} - ${response.body}");
       throw Exception("Erreur lors de l'archivage de la liste");
     }
   }
@@ -279,7 +279,7 @@ class TrelloService {
       final data = json.decode(response.body);
       return (data as List).map((json) => TrelloCard.fromJson(json)).toList();
     } else {
-      throw Exception('Erreur lors du chargement des cartes');
+      throw Exception("Erreur lors du chargement des cartes");
     }
   }
 
@@ -427,15 +427,15 @@ class TrelloService {
     }
   }
 
-  static Future<List<Board>> getAllBoards() async {
+  Future<List<Board>> getAllBoards() async {
     final url = '$_baseUrl/members/me/boards?key=$api_key&token=$token';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      List<dynamic> data = json.decode(response.body);
-      return data.map((board) => Board.fromJson(board)).toList();
+      final data = json.decode(response.body);
+      return (data as List).map((json) => Board.fromJson(json)).toList();
     } else {
-      throw Exception('Erreur lors du chargement des Boards');
+      throw Exception('Erreur lors du chargement des boards : ${response.statusCode} - ${response.body}');
     }
   }
 
@@ -452,7 +452,7 @@ class TrelloService {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("Board créé avec succès");
     } else {
-      print("Erreur lors de la création du board: ${response.statusCode} - ${response.body}");
+      print("Erreur lors de la création du board : ${response.statusCode} - ${response.body}");
       throw Exception("Erreur lors de la création du board");
     }
   }

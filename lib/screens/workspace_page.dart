@@ -3,6 +3,8 @@ import '../services/trello_service.dart';
 import 'boards_page.dart';
 
 class WorkspacePage extends StatefulWidget {
+  const WorkspacePage({super.key});
+
   @override
   _WorkspacePageState createState() => _WorkspacePageState();
 }
@@ -19,7 +21,8 @@ class _WorkspacePageState extends State<WorkspacePage> {
 
   Future<void> _fetchWorkspaces() async {
     try {
-      final workspaces = await TrelloService.getAllWorkspace();
+      final trelloService = TrelloService();
+      final workspaces = await trelloService.getAllWorkspace();
       print("Workspaces récupérés : $workspaces");
       setState(() {
         _workspaces = workspaces ?? [];
@@ -94,14 +97,14 @@ class _WorkspacePageState extends State<WorkspacePage> {
   }
 
   void _showCreateWorkspaceDialog() {
-    final TextEditingController _nameController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Créer un Workspace"),
         content: TextField(
-          controller: _nameController,
+          controller: nameController,
           decoration: InputDecoration(labelText: "Nom du Workspace"),
         ),
         actions: [
@@ -111,7 +114,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
           ),
           TextButton(
             onPressed: () {
-              final name = _nameController.text.trim();
+              final name = nameController.text.trim();
               if (name.isNotEmpty) {
                 _createWorkspace(name);
                 Navigator.pop(context);
@@ -125,14 +128,14 @@ class _WorkspacePageState extends State<WorkspacePage> {
   }
 
   void _showUpdateWorkspaceDialog(String workspaceId, String currentName) {
-    final TextEditingController _nameController = TextEditingController(text: currentName);
+    final TextEditingController nameController = TextEditingController(text: currentName);
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Modifier le Workspace"),
         content: TextField(
-          controller: _nameController,
+          controller: nameController,
           decoration: InputDecoration(labelText: "Nouveau nom"),
         ),
         actions: [
@@ -142,7 +145,7 @@ class _WorkspacePageState extends State<WorkspacePage> {
           ),
           TextButton(
             onPressed: () {
-              final newName = _nameController.text.trim();
+              final newName = nameController.text.trim();
               if (newName.isNotEmpty) {
                 _updateWorkspace(workspaceId, newName);
                 Navigator.pop(context);
@@ -199,8 +202,8 @@ class _WorkspacePageState extends State<WorkspacePage> {
                   },
                 ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
         onPressed: _showCreateWorkspaceDialog,
+        child: Icon(Icons.add),
       ),
     );
   }

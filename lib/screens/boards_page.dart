@@ -23,7 +23,8 @@ class _BoardsPageState extends State<BoardsPage> {
 
   Future<void> _fetchBoards() async {
     try {
-      final allBoards = await TrelloService.getAllBoards();
+      final trelloService = TrelloService();
+      final allBoards = await trelloService.getAllBoards();
 
       final filteredBoards = allBoards
           .where((board) => board.idOrganization == widget.workspaceId)

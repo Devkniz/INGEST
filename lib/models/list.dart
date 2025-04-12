@@ -1,4 +1,3 @@
-import 'package:untitled/models/card.dart' as my_models;
 
 class TrelloList {
   final String id;
