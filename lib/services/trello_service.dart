@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:untitled/models/card.dart' as member_model;
 import '../models/board.dart';
 import '../models/list.dart';
-import '../models/Workspace.dart';
+import '../models/workspace_model.dart';
 import '../models/card.dart';
 
 class TrelloService {

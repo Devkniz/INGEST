@@ -3,15 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i8;
-import 'package:untitled/models/board.dart' as _i6;
-import 'package:untitled/models/card.dart' as _i3;
-import 'package:untitled/models/list.dart' as _i2;
-import 'package:untitled/models/workspace_model.dart' as _i7;
-import 'package:untitled/services/trello_service.dart' as _i4;
+import 'package:untitled/models/board.dart' as _i7;
+import 'package:untitled/models/card.dart' as _i4;
+import 'package:untitled/models/list.dart' as _i3;
+import 'package:untitled/models/workspace_model.dart' as _i2;
+import 'package:untitled/services/trello_service.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,31 +26,38 @@ import 'package:untitled/services/trello_service.dart' as _i4;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeTrelloList_0 extends _i1.SmartFake implements _i2.TrelloList {
-  _FakeTrelloList_0(Object parent, Invocation parentInvocation)
+class _FakeWorkspace_0 extends _i1.SmartFake implements _i2.Workspace {
+  _FakeWorkspace_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeTrelloCard_1 extends _i1.SmartFake implements _i3.TrelloCard {
-  _FakeTrelloCard_1(Object parent, Invocation parentInvocation)
+class _FakeTrelloList_1 extends _i1.SmartFake implements _i3.TrelloList {
+  _FakeTrelloList_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeTrelloCard_2 extends _i1.SmartFake implements _i4.TrelloCard {
+  _FakeTrelloCard_2(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [TrelloService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTrelloService extends _i1.Mock implements _i4.TrelloService {
+class MockTrelloService extends _i1.Mock implements _i5.TrelloService {
   MockTrelloService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<dynamic>> getAllWorkspace() =>
+  _i6.Future<List<_i2.Workspace>> getAllWorkspace() =>
       (super.noSuchMethod(
             Invocation.method(#getAllWorkspace, []),
-            returnValue: _i5.Future<List<dynamic>>.value(<dynamic>[]),
+            returnValue: _i6.Future<List<_i2.Workspace>>.value(
+              <_i2.Workspace>[],
+            ),
           )
-          as _i5.Future<List<dynamic>>);
+          as _i6.Future<List<_i2.Workspace>>);
 
   @override
   dynamic addCard(String? listId, String? text, String? text2) =>
@@ -66,41 +72,46 @@ class MockTrelloService extends _i1.Mock implements _i4.TrelloService {
       super.noSuchMethod(Invocation.method(#fectchCards, [listId]));
 
   @override
-  _i5.Future<dynamic> createWorkspace(String? name) =>
+  _i6.Future<_i2.Workspace> createWorkspace(String? name) =>
       (super.noSuchMethod(
             Invocation.method(#createWorkspace, [name]),
-            returnValue: _i5.Future<dynamic>.value(),
+            returnValue: _i6.Future<_i2.Workspace>.value(
+              _FakeWorkspace_0(
+                this,
+                Invocation.method(#createWorkspace, [name]),
+              ),
+            ),
           )
-          as _i5.Future<dynamic>);
+          as _i6.Future<_i2.Workspace>);
 
   @override
-  _i5.Future<void> deleteWorkspace(String? workspaceId) =>
+  _i6.Future<void> deleteWorkspace(String? workspaceId) =>
       (super.noSuchMethod(
             Invocation.method(#deleteWorkspace, [workspaceId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> updateWorkspace(String? workspaceId, String? newName) =>
+  _i6.Future<void> updateWorkspace(String? workspaceId, String? newName) =>
       (super.noSuchMethod(
             Invocation.method(#updateWorkspace, [workspaceId, newName]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<List<_i3.Member>> getMembers(String? workspaceId) =>
+  _i6.Future<List<_i4.Member>> getMembers(String? workspaceId) =>
       (super.noSuchMethod(
             Invocation.method(#getMembers, [workspaceId]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<List<_i3.Member>> createMembers(
+  _i6.Future<List<_i4.Member>> createMembers(
     String? workspaceId,
     String? fullName,
     String? username,
@@ -113,310 +124,269 @@ class MockTrelloService extends _i1.Mock implements _i4.TrelloService {
               username,
               email,
             ]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<List<_i3.Member>> deleteMembers(
+  _i6.Future<List<_i4.Member>> deleteMembers(
     String? workspaceId,
     String? memberId,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#deleteMembers, [workspaceId, memberId]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<List<_i3.Member>> updateMembers(
+  _i6.Future<List<_i4.Member>> updateMembers(
     String? workspaceId,
     String? memberId,
     String? newName,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateMembers, [workspaceId, memberId, newName]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<List<_i2.TrelloList>> getAllLists(String? boardId) =>
+  _i6.Future<List<_i3.TrelloList>> getAllLists(String? boardId) =>
       (super.noSuchMethod(
             Invocation.method(#getAllLists, [boardId]),
-            returnValue: _i5.Future<List<_i2.TrelloList>>.value(
-              <_i2.TrelloList>[],
+            returnValue: _i6.Future<List<_i3.TrelloList>>.value(
+              <_i3.TrelloList>[],
             ),
           )
-          as _i5.Future<List<_i2.TrelloList>>);
+          as _i6.Future<List<_i3.TrelloList>>);
 
   @override
-  _i5.Future<_i2.TrelloList> createList(String? boardId, String? name) =>
+  _i6.Future<_i3.TrelloList> createList(String? boardId, String? name) =>
       (super.noSuchMethod(
             Invocation.method(#createList, [boardId, name]),
-            returnValue: _i5.Future<_i2.TrelloList>.value(
-              _FakeTrelloList_0(
+            returnValue: _i6.Future<_i3.TrelloList>.value(
+              _FakeTrelloList_1(
                 this,
                 Invocation.method(#createList, [boardId, name]),
               ),
             ),
           )
-          as _i5.Future<_i2.TrelloList>);
+          as _i6.Future<_i3.TrelloList>);
 
   @override
-  _i5.Future<void> deleteList(String? boardId, String? listId) =>
+  _i6.Future<void> deleteList(String? boardId, String? listId) =>
       (super.noSuchMethod(
             Invocation.method(#deleteList, [boardId, listId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> updateList(String? listId, String? newName) =>
+  _i6.Future<void> updateList(String? listId, String? newName) =>
       (super.noSuchMethod(
             Invocation.method(#updateList, [listId, newName]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> updateListById(String? listId, String? newName) =>
+  _i6.Future<void> updateListById(String? listId, String? newName) =>
       (super.noSuchMethod(
             Invocation.method(#updateListById, [listId, newName]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> archiveList(String? listId) =>
+  _i6.Future<void> archiveList(String? listId) =>
       (super.noSuchMethod(
             Invocation.method(#archiveList, [listId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<List<_i3.TrelloCard>> getAllCards(String? listId) =>
+  _i6.Future<List<_i4.TrelloCard>> getAllCards(String? listId) =>
       (super.noSuchMethod(
             Invocation.method(#getAllCards, [listId]),
-            returnValue: _i5.Future<List<_i3.TrelloCard>>.value(
-              <_i3.TrelloCard>[],
+            returnValue: _i6.Future<List<_i4.TrelloCard>>.value(
+              <_i4.TrelloCard>[],
             ),
           )
-          as _i5.Future<List<_i3.TrelloCard>>);
+          as _i6.Future<List<_i4.TrelloCard>>);
 
   @override
-  _i5.Future<List<_i3.TrelloCard>> fetchCards(String? listId) =>
+  _i6.Future<List<_i4.TrelloCard>> fetchCards(String? listId) =>
       (super.noSuchMethod(
             Invocation.method(#fetchCards, [listId]),
-            returnValue: _i5.Future<List<_i3.TrelloCard>>.value(
-              <_i3.TrelloCard>[],
+            returnValue: _i6.Future<List<_i4.TrelloCard>>.value(
+              <_i4.TrelloCard>[],
             ),
           )
-          as _i5.Future<List<_i3.TrelloCard>>);
+          as _i6.Future<List<_i4.TrelloCard>>);
 
   @override
-  _i5.Future<List<_i3.TrelloCard>> createCardForList(
+  _i6.Future<List<_i4.TrelloCard>> createCardForList(
     String? listId,
     String? name,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#createCardForList, [listId, name]),
-            returnValue: _i5.Future<List<_i3.TrelloCard>>.value(
-              <_i3.TrelloCard>[],
+            returnValue: _i6.Future<List<_i4.TrelloCard>>.value(
+              <_i4.TrelloCard>[],
             ),
           )
-          as _i5.Future<List<_i3.TrelloCard>>);
+          as _i6.Future<List<_i4.TrelloCard>>);
 
   @override
-  _i5.Future<_i3.TrelloCard> createCard(
+  _i6.Future<_i4.TrelloCard> createCard(
     String? listId,
     String? name,
     String? desc,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#createCard, [listId, name, desc]),
-            returnValue: _i5.Future<_i3.TrelloCard>.value(
-              _FakeTrelloCard_1(
+            returnValue: _i6.Future<_i4.TrelloCard>.value(
+              _FakeTrelloCard_2(
                 this,
                 Invocation.method(#createCard, [listId, name, desc]),
               ),
             ),
           )
-          as _i5.Future<_i3.TrelloCard>);
+          as _i6.Future<_i4.TrelloCard>);
 
   @override
-  _i5.Future<List<_i3.TrelloCard>> deleteCardFromList(
+  _i6.Future<List<_i4.TrelloCard>> deleteCardFromList(
     String? listId,
     String? cardId,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#deleteCardFromList, [listId, cardId]),
-            returnValue: _i5.Future<List<_i3.TrelloCard>>.value(
-              <_i3.TrelloCard>[],
+            returnValue: _i6.Future<List<_i4.TrelloCard>>.value(
+              <_i4.TrelloCard>[],
             ),
           )
-          as _i5.Future<List<_i3.TrelloCard>>);
+          as _i6.Future<List<_i4.TrelloCard>>);
 
   @override
-  _i5.Future<void> deleteCard(String? cardId) =>
+  _i6.Future<void> deleteCard(String? cardId) =>
       (super.noSuchMethod(
             Invocation.method(#deleteCard, [cardId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<List<_i3.TrelloCard>> updateCardInList(
+  _i6.Future<List<_i4.TrelloCard>> updateCardInList(
     String? listId,
     String? cardId,
     String? newName,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateCardInList, [listId, cardId, newName]),
-            returnValue: _i5.Future<List<_i3.TrelloCard>>.value(
-              <_i3.TrelloCard>[],
+            returnValue: _i6.Future<List<_i4.TrelloCard>>.value(
+              <_i4.TrelloCard>[],
             ),
           )
-          as _i5.Future<List<_i3.TrelloCard>>);
+          as _i6.Future<List<_i4.TrelloCard>>);
 
   @override
-  _i5.Future<void> updateCard(
+  _i6.Future<void> updateCard(
     String? cardId,
     String? newName,
     String? newDesc,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateCard, [cardId, newName, newDesc]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> assignMemberToCard(String? cardId, String? memberId) =>
+  _i6.Future<void> assignMemberToCard(String? cardId, String? memberId) =>
       (super.noSuchMethod(
             Invocation.method(#assignMemberToCard, [cardId, memberId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> removeMemberFromCard(String? cardId, String? memberId) =>
+  _i6.Future<void> removeMemberFromCard(String? cardId, String? memberId) =>
       (super.noSuchMethod(
             Invocation.method(#removeMemberFromCard, [cardId, memberId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<List<_i6.Board>> getAllBoards() =>
+  _i6.Future<List<_i7.Board>> getAllBoards() =>
       (super.noSuchMethod(
             Invocation.method(#getAllBoards, []),
-            returnValue: _i5.Future<List<_i6.Board>>.value(<_i6.Board>[]),
+            returnValue: _i6.Future<List<_i7.Board>>.value(<_i7.Board>[]),
           )
-          as _i5.Future<List<_i6.Board>>);
+          as _i6.Future<List<_i7.Board>>);
 
   @override
-  _i5.Future<void> createBoard(String? name, String? workspaceId) =>
+  _i6.Future<void> createBoard(String? name, String? workspaceId) =>
       (super.noSuchMethod(
             Invocation.method(#createBoard, [name, workspaceId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> deleteBoard(String? boardId) =>
+  _i6.Future<void> deleteBoard(String? boardId) =>
       (super.noSuchMethod(
             Invocation.method(#deleteBoard, [boardId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<void> updateBoard(String? boardId, String? newName) =>
+  _i6.Future<void> updateBoard(String? boardId, String? newName) =>
       (super.noSuchMethod(
             Invocation.method(#updateBoard, [boardId, newName]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
+          as _i6.Future<void>);
 
   @override
-  _i5.Future<List<_i3.Member>> getCardMembers(String? cardId) =>
+  _i6.Future<List<_i4.Member>> getCardMembers(String? cardId) =>
       (super.noSuchMethod(
             Invocation.method(#getCardMembers, [cardId]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<List<_i3.Member>> getCardMembersById(String? cardId) =>
+  _i6.Future<List<_i4.Member>> getCardMembersById(String? cardId) =>
       (super.noSuchMethod(
             Invocation.method(#getCardMembersById, [cardId]),
-            returnValue: _i5.Future<List<_i3.Member>>.value(<_i3.Member>[]),
+            returnValue: _i6.Future<List<_i4.Member>>.value(<_i4.Member>[]),
           )
-          as _i5.Future<List<_i3.Member>>);
+          as _i6.Future<List<_i4.Member>>);
 
   @override
-  _i5.Future<void> createKanbanTemplate(
+  _i6.Future<void> createKanbanTemplate(
     String? boardName,
     String? workspaceId,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#createKanbanTemplate, [boardName, workspaceId]),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
           )
-          as _i5.Future<void>);
-}
-
-/// A class which mocks [Workspace].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockWorkspace extends _i1.Mock implements _i7.Workspace {
-  MockWorkspace() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  String get id =>
-      (super.noSuchMethod(
-            Invocation.getter(#id),
-            returnValue: _i8.dummyValue<String>(this, Invocation.getter(#id)),
-          )
-          as String);
-
-  @override
-  String get name =>
-      (super.noSuchMethod(
-            Invocation.getter(#name),
-            returnValue: _i8.dummyValue<String>(this, Invocation.getter(#name)),
-          )
-          as String);
-
-  @override
-  List<String> get boardIds =>
-      (super.noSuchMethod(Invocation.getter(#boardIds), returnValue: <String>[])
-          as List<String>);
-
-  @override
-  int get membersCount =>
-      (super.noSuchMethod(Invocation.getter(#membersCount), returnValue: 0)
-          as int);
-
-  @override
-  set membersCount(int? _membersCount) => super.noSuchMethod(
-    Invocation.setter(#membersCount, _membersCount),
-    returnValueForMissingStub: null,
-  );
+          as _i6.Future<void>);
 }
